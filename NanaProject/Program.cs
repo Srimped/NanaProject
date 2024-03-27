@@ -1,14 +1,23 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Identity.Client;
 using NanaProject.Models;
+using NanaProject.Services;
+using NanaProject.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<NanaDbContext>(options => 
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<NanaDbContext>(options =>
+    {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    }
+);
+
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IFoodService, FoodService>();
 
 var app = builder.Build();
 
