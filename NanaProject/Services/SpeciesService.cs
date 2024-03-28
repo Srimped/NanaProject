@@ -27,20 +27,17 @@ public class SpeciesService : ISpeciesService
     public void CreateSpecies (Species species)
     {
         _context.Add(species);
-        Save();
     }
 
     public void UpdateSpecies (Species species)
     {
         _context.Specieses.Update(species);
-        Save();
     }
 
     public void DeleteSpecies (int id)
     {
         Species spec = GetById(id);
         _context.Specieses.Remove(spec);
-        Save();
     }
 
     public Species GetById (int id)

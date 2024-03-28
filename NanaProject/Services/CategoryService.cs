@@ -27,20 +27,17 @@ public class CategoryService : ICategoryService
     public void CreateCategory (Category category)
     {
         _context.Add(category);
-        Save();
     }
 
     public void UpdateCategory (Category category)
     {
         _context.Categories.Update(category);
-        Save();
     }
 
     public void DeleteCategory (int id)
     {
         Category cate = GetById(id);
         _context.Categories.Remove(cate);
-        Save();
     }
 
     public Category GetById (int id)

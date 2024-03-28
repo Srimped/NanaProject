@@ -27,20 +27,17 @@ public class AccountService : IAccountService
     public void CreateAccount (Account account)
     {
         _context.Add(account);
-        Save();
     }
 
     public void UpdateAccount (Account account)
     {
         _context.Accounts.Update(account);
-        Save();
     }
 
     public void DeleteAccount (int id)
     {
         Account acc = GetById(id);
         _context.Accounts.Remove(acc);
-        Save();
     }
 
     public Account GetById (int id)

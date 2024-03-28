@@ -27,20 +27,17 @@ public class FoodService : IFoodService
     public void CreateFood (Food food)
     {
         _context.Add(food);
-        Save();
     }
 
     public void UpdateFood (Food food)
     {
         _context.Foods.Update(food);
-        Save();
     }
 
     public void DeleteFood (int id)
     {
         Food food = GetById(id);
         _context.Foods.Remove(food);
-        Save();
     }
 
     public Food GetById (int id)

@@ -27,20 +27,17 @@ public class PetService : IPetService
     public void CreatePet (Pet pet)
     {
         _context.Add(pet);
-        Save();
     }
 
     public void UpdatePet (Pet pet)
     {
         _context.Pets.Update(pet);
-        Save();
     }
 
     public void DeletePet (int id)
     {
         Pet pet = GetById(id);
         _context.Pets.Remove(pet);
-        Save();
     }
 
     public Pet GetById (int id)
