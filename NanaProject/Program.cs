@@ -18,6 +18,9 @@ builder.Services.AddDbContext<NanaDbContext>(options =>
 
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IFoodService, FoodService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IPetService, PetService>();
+builder.Services.AddScoped<ISpeciesService, SpeciesService>();
 
 var app = builder.Build();
 
