@@ -133,7 +133,7 @@ namespace NanaProject.Controllers
         // POST: Food/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
             _foodService.DeleteFood(id);
             _foodService.Save();
