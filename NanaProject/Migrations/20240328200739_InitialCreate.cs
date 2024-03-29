@@ -17,11 +17,11 @@ namespace NanaProject.Migrations
                 {
                     AccId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AccPhoto = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AccPhoto = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     DOB = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -36,8 +36,8 @@ namespace NanaProject.Migrations
                 {
                     CateId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CateName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CateDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CateName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CateDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -50,8 +50,8 @@ namespace NanaProject.Migrations
                 {
                     SpecId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SpecName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SpecDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    SpecName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    SpecDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -64,12 +64,12 @@ namespace NanaProject.Migrations
                 {
                     FoodId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FoodPhoto = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FoodName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FoodPhoto = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FoodName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CateId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    FoodDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FoodDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoryCateId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -88,13 +88,13 @@ namespace NanaProject.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Photo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Photo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     TypeId = table.Column<int>(type: "int", nullable: false),
-                    Old = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Old = table.Column<float>(type: "real", nullable: false),
                     CheckIn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CheckOut = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SpeciesSpecId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
