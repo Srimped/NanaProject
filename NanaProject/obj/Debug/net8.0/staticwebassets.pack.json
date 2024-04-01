@@ -9,12 +9,52 @@
       "PackagePath": "staticwebassets\\Images\\Banner.jpg"
     },
     {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\BirdCateBanner.jpg",
+      "PackagePath": "staticwebassets\\Images\\BirdCateBanner.jpg"
+    },
+    {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\CatCateBanner.jpg",
+      "PackagePath": "staticwebassets\\Images\\CatCateBanner.jpg"
+    },
+    {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\DogCateBanner.jpg",
+      "PackagePath": "staticwebassets\\Images\\DogCateBanner.jpg"
+    },
+    {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\ExoticCateBanner.jpg",
+      "PackagePath": "staticwebassets\\Images\\ExoticCateBanner.jpg"
+    },
+    {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\FishCateBanner.jpg",
+      "PackagePath": "staticwebassets\\Images\\FishCateBanner.jpg"
+    },
+    {
       "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\Paw.png",
       "PackagePath": "staticwebassets\\Images\\Paw.png"
     },
     {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\ReptileCateBanner.jpg",
+      "PackagePath": "staticwebassets\\Images\\ReptileCateBanner.jpg"
+    },
+    {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\pet-care.png",
+      "PackagePath": "staticwebassets\\Images\\pet-care.png"
+    },
+    {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\pet-food.png",
+      "PackagePath": "staticwebassets\\Images\\pet-food.png"
+    },
+    {
       "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\petsBan.png",
       "PackagePath": "staticwebassets\\Images\\petsBan.png"
+    },
+    {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\stethoscope.png",
+      "PackagePath": "staticwebassets\\Images\\stethoscope.png"
+    },
+    {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\tennis-ball.png",
+      "PackagePath": "staticwebassets\\Images\\tennis-ball.png"
     },
     {
       "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\css\\site.css",
