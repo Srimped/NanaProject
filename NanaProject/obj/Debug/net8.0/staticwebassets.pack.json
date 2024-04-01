@@ -5,6 +5,18 @@
       "PackagePath": "staticwebassets\\NanaProject.bundle.scp.css"
     },
     {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\Banner.jpg",
+      "PackagePath": "staticwebassets\\Images\\Banner.jpg"
+    },
+    {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\Paw.png",
+      "PackagePath": "staticwebassets\\Images\\Paw.png"
+    },
+    {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\petsBan.png",
+      "PackagePath": "staticwebassets\\Images\\petsBan.png"
+    },
+    {
       "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

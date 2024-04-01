@@ -4,10 +4,6 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
-}
-module.exports = {
-  //...
   plugins: [require("daisyui")],
 }
 
