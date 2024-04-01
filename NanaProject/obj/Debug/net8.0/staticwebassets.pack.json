@@ -17,8 +17,16 @@
       "PackagePath": "staticwebassets\\Images\\CatCateBanner.jpg"
     },
     {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\Charity.png",
+      "PackagePath": "staticwebassets\\Images\\Charity.png"
+    },
+    {
       "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\DogCateBanner.jpg",
       "PackagePath": "staticwebassets\\Images\\DogCateBanner.jpg"
+    },
+    {
+      "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\Donate.png",
+      "PackagePath": "staticwebassets\\Images\\Donate.png"
     },
     {
       "Id": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\ExoticCateBanner.jpg",

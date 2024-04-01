@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5a08VbhdxoawaIFxxxDD2Ltom6RdY6rl3URGosV9K6o=",
+  "Hash": "j9fWEBJdXzh8SXYweidOTts79/3ohppI858tMwJJuWc=",
   "Source": "NanaProject",
   "BasePath": "_content/NanaProject",
   "Mode": "Default",
@@ -150,6 +150,25 @@
       "OriginalItemSpec": "wwwroot\\Images\\CatCateBanner.jpg"
     },
     {
+      "Identity": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\Charity.png",
+      "SourceId": "NanaProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\",
+      "BasePath": "_content/NanaProject",
+      "RelativePath": "Images/Charity.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Charity.png"
+    },
+    {
       "Identity": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\DogCateBanner.jpg",
       "SourceId": "NanaProject",
       "SourceType": "Discovered",
@@ -167,6 +186,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\DogCateBanner.jpg"
+    },
+    {
+      "Identity": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\Donate.png",
+      "SourceId": "NanaProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\",
+      "BasePath": "_content/NanaProject",
+      "RelativePath": "Images/Donate.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Donate.png"
     },
     {
       "Identity": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\ExoticCateBanner.jpg",

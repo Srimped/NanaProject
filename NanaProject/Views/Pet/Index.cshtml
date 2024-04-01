@@ -9,63 +9,37 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Photo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TypeId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Old)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CheckIn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CheckOut)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Photo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Old)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheckIn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheckOut)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+@* @foreach (var item in Model) {
+@Html.DisplayFor(modelItem => item.Photo)
+@Html.DisplayFor(modelItem => item.Name)
+@Html.DisplayFor(modelItem => item.TypeId)
+@Html.DisplayFor(modelItem => item.Old)
+@Html.DisplayFor(modelItem => item.CheckIn)
+@Html.DisplayFor(modelItem => item.CheckOut)
+@Html.DisplayFor(modelItem => item.Description)
+<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+<a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+} *@
+
+
+<section class="grid grid-cols-4 place-items-center gap-20 mx-32">
+    @foreach (var item in Model)
+    {
+        <div class="card w-96 bg-base-100 shadow-xl border-none">
+            <figure><img src="@Html.DisplayFor(modelItem => item.Photo)" alt="Shoes" /></figure>
+            <div class="card-body">
+                <h2 class="card-title text-white">@Html.DisplayFor(modelItem => item.Name)</h2>
+                <p class="text-white"><span class="font-bold">Specie: </span> @Html.DisplayFor(modelItem => item.TypeId)</p>
+                <p class="text-white"><span class="font-bold">Age: </span> @Html.DisplayFor(modelItem => item.Old) years old
+                </p>
+                <p class="text-white">@Html.DisplayFor(modelItem => item.Description)</p>
+                <div class="card-actions justify-evenly mt-4">
+                    <a class="btn btn-accent" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Update</a>
+                    <a class="btn btn-error" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</section>
