@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QvlkL7TPDSLRqI3LuIBJS1N2a91VphXeMOgL7zZ6kkE=",
+  "Hash": "3OgaAYt/RBt8erYUoy2efGo93O1qvas0iuT/jTA+8mE=",
   "Source": "NanaProject",
   "BasePath": "_content/NanaProject",
   "Mode": "Default",
@@ -129,6 +129,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Paw.png"
+    },
+    {
+      "Identity": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\Images\\petsBan.png",
+      "SourceId": "NanaProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\",
+      "BasePath": "_content/NanaProject",
+      "RelativePath": "Images/petsBan.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\petsBan.png"
     },
     {
       "Identity": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\wwwroot\\js\\site.js",
