@@ -4,57 +4,28 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="hero min-h-screen bg-base-200">
+    <div class="hero-content flex-col lg:flex-row gap-20">
+        <img src="@Html.DisplayFor(model => model.Photo)" class="max-w-2xl rounded-lg shadow-2xl aspect-[16/10] object-cover" />
+        <div>
+            <h1 class="text-5xl font-bold py-6">Pet "@Html.DisplayFor(model => model.Name)"</h1>
+            <p class="text-xl py-2"><span class="font-bold">ID: 
+                </span>@Html.DisplayFor(model => model.Id)</p>
+            <p class="text-xl py-2"><span class="font-bold">Species: 
+                </span>@Html.DisplayFor(model => model.TypeId)</p>
+            <p class="text-xl py-2"><span class="font-bold">Age: </span>@Html.DisplayFor(model
+                => model.Old) years old</p>
+            <p class="text-xl py-2"><span class="font-bold">Time Adopted: 
+                </span>@Html.DisplayFor(model => model.CheckIn)</p>
+            <p class="text-xl py-2"><span class="font-bold">Time PickUp: 
+                </span>@Html.DisplayFor(model => model.CheckOut)</p>
+            <p class="text-xl py-2"><span class="font-bold">@Html.DisplayNameFor(model => model.Description):
+                </span>@Html.DisplayFor(model => model.Description)</p>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Update</a>
+            <a asp-action="Index" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
+</div>
 
 <div>
-    <h4>Pet</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Photo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TypeId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TypeId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Old)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Old)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CheckIn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CheckIn)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CheckOut)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CheckOut)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>
