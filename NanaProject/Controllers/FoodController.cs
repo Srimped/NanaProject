@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NanaProject.Interfaces;
 using NanaProject.Models;
+using NanaProject.ViewModels;
 
 namespace NanaProject.Controllers
 {
@@ -48,9 +49,12 @@ namespace NanaProject.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
-            // var cate = GetCate();
-            // return View(cate);
+            
+            var model = new FoodCreateEditViewModel
+            {
+                Categories = GetCate()
+            };
+            return View(model);
         }
 
         // POST: Food/Create
@@ -76,8 +80,8 @@ namespace NanaProject.Controllers
             {
                 return NotFound();
             }
-            // GetCate();
-            var food = _foodService.GetById(id);
+            var food = _foodService.GetByIdCate(id);
+            food.Categories = GetCate();
             if (food == null)
             {
                 return NotFound();
@@ -129,7 +133,7 @@ namespace NanaProject.Controllers
         {
             new SelectListItem(){
                 Value = "",
-                Text= "Please Select Category"
+                Text= "---Select Supply Category---"
             }
         };
             cates.AddRange(_categoryService.GetCategories().Select(c => new SelectListItem()

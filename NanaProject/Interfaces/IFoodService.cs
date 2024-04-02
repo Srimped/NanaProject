@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using NanaProject.Models;
+using NanaProject.ViewModels;
 
 namespace NanaProject.Interfaces;
 
@@ -11,4 +12,5 @@ public interface IFoodService
     void UpdateFood(Food food);
     void DeleteFood(int id);
     Food GetById (int id);
+    public FoodCreateEditViewModel GetByIdCate (int id); 
 }
