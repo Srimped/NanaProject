@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace NanaProject.Models;
 
-public class NanaDbContext : DbContext
+public class NanaDbContext : IdentityDbContext<IdentityUser>
 {
     public NanaDbContext(DbContextOptions<NanaDbContext> options) : base(options)
     {
