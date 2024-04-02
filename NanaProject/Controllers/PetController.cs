@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NanaProject.Interfaces;
 using NanaProject.Models;
+using NanaProject.ViewModels;
 
 namespace NanaProject.Controllers
 {
@@ -48,9 +49,11 @@ namespace NanaProject.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
-            // var pet = GetSpec();
-            // return View(pet);
+            var model = new PetCreateEditViewModel
+            {
+                Specieses = GetSpec()
+            };
+            return View(model);
         }
 
         // POST: Pet/Create
@@ -62,6 +65,7 @@ namespace NanaProject.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 _petService.CreatePet(pet);
                 _petService.Save();
                 return RedirectToAction("Index");
@@ -77,7 +81,8 @@ namespace NanaProject.Controllers
                 return NotFound();
             }
             // GetSpec();
-            var pet = _petService.GetById(id);
+            var pet = _petService.GetByIdSpec(id);
+            pet.Specieses = GetSpec();
             if (pet == null)
             {
                 return NotFound();
@@ -113,23 +118,6 @@ namespace NanaProject.Controllers
             return View(pet);
         }
 
-        [HttpGet]
-        public IActionResult Delete(int id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var pet = _petService.GetById(id);
-            if (pet == null)
-            {
-                return NotFound();
-            }
-
-            return View(pet);
-        }
-
         // POST: Pet/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -146,7 +134,7 @@ namespace NanaProject.Controllers
         {
             new SelectListItem(){
                 Value = "",
-                Text= "Please Select Species"
+                Text= "---Select Pet Species---"
             }
         };
             specs.AddRange(_speciesService.GetSpecies().Select(s => new SelectListItem()

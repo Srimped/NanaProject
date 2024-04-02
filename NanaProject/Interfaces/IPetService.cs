@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using NanaProject.Models;
+using NanaProject.ViewModels;
 
 namespace NanaProject.Interfaces;
 
@@ -10,5 +11,6 @@ public interface IPetService
     void CreatePet(Pet pet);
     void UpdatePet(Pet pet);
     void DeletePet(int id);
-    Pet GetById(int id);    
+    public Pet GetById(int id);   
+    public PetCreateEditViewModel GetByIdSpec (int id); 
 }

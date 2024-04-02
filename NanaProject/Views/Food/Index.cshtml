@@ -4,62 +4,67 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
+<h1 class="text-5xl font-bold text-yellow-400 text-center mt-20">Pet Supplies</h1>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary mb-20 ml-28" asp-action="Create">Add Food</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FoodPhoto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FoodName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CateId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FoodDescription)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FoodPhoto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FoodName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CateId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FoodDescription)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.FoodId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.FoodId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.FoodId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+@* @foreach (var item in Model) {
+<tr>
+<td>
+@Html.DisplayFor(modelItem => item.FoodPhoto)
+</td>
+<td>
+@Html.DisplayFor(modelItem => item.FoodName)
+</td>
+<td>
+@Html.DisplayFor(modelItem => item.CateId)
+</td>
+<td>
+@Html.DisplayFor(modelItem => item.Quantity)
+</td>
+<td>
+@Html.DisplayFor(modelItem => item.Status)
+</td>
+<td>
+@Html.DisplayFor(modelItem => item.FoodDescription)
+</td>
+<td>
+<a asp-action="Edit" asp-route-id="@item.FoodId">Edit</a> |
+<a asp-action="Details" asp-route-id="@item.FoodId">Details</a> |
+<a asp-action="Delete" asp-route-id="@item.FoodId">Delete</a>
+</td>
+</tr>
+} *@
+
+<section class="grid grid-cols-4 place-items-center gap-20 mx-32">
+    @foreach (var item in Model)
+    {
+        <div class="card w-96 bg-base-100 shadow-xl border-none">
+            <figure><img class="aspect-[4/2] object-contain" src="@Html.DisplayFor(modelItem => item.FoodPhoto)"
+                    alt="Foods" /></figure>
+            <div class="card-body">
+                <div class="mx-6">
+                    <h2 class="card-title text-black text-3xl font-bold mb-3">@Html.DisplayFor(modelItem => item.FoodName)
+                    </h2>
+                    <div class="">
+                        <p class="text-black mb-2"><span class="font-bold">Quantity: </span> @Html.DisplayFor(modelItem =>
+                        item.Quantity)
+                        </p>
+                        <p class="text-black mb-2"><span class="font-bold">Status: </span>@Html.DisplayFor(modelItem =>
+                        item.Status)</p>
+                        <p class="text-black">@Html.DisplayFor(modelItem => item.FoodDescription)</p>
+                    </div>
+                </div>
+                <div class="card-actions justify-evenly mt-4">
+                    <a class="btn btn-accent shadow" asp-action="Details" asp-route-id="@item.FoodId">Details</a>
+                    <a class="btn btn-warning shadow" asp-action="Edit" asp-route-id="@item.FoodId">Update</a>
+                    <form asp-action="Delete" asp-route-id="@item.FoodId"
+                        onsubmit="return confirm('Are you sure to remove pet @Html.DisplayFor(modelItem => item.FoodName) !!!???')">
+                        <button class="btn btn-error shadow">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</section>

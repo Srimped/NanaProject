@@ -1,64 +1,65 @@
-@model NanaProject.Models.Pet
-
+@model NanaProject.ViewModels.PetCreateEditViewModel
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Modify Pet";
 }
 
-<h1>Edit</h1>
-
-<h4>Pet</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+<div class="container form-control w-[700px] my-20 p-12 rounded-lg shadow border-none">
+    <h1 class="text-center text-3xl font-semibold text-yellow-400 mb-4">Modify adopted pet</h1>
+    <div class="">
+        <form asp-action="Edit" class="grid grid-cols-2 gap-3">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Photo" class="control-label"></label>
-                <input asp-for="Photo" class="form-control" />
-                <span asp-validation-for="Photo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <label asp-for="Name" class="label"></label>
+                <input asp-for="Name" type="text" placeholder="What is the pet name?"
+                    class="input input-bordered input-warning w-full max-w-xs" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TypeId" class="control-label"></label>
-                <input asp-for="TypeId" class="form-control" />
-                <span asp-validation-for="TypeId" class="text-danger"></span>
+                <label asp-for="TypeId" class="label">Species</label>
+                <select asp-for="TypeId" asp-items="Model.Specieses"
+                    class="select select-warning w-full max-w-xs"></select>
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Old" class="control-label"></label>
-                <input asp-for="Old" class="form-control" />
-                <span asp-validation-for="Old" class="text-danger"></span>
+                <label asp-for="Old" class="label">Age</label>
+                <input asp-for="Old" type="number" placeholder="How old is it?"
+                    class="input input-bordered input-warning w-full max-w-xs" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CheckIn" class="control-label"></label>
-                <input asp-for="CheckIn" class="form-control" />
-                <span asp-validation-for="CheckIn" class="text-danger"></span>
+                <label asp-for="Description" class="label"></label>
+                <input asp-for="Description" type="text" placeholder="Anything special about it?"
+                    class="input input-bordered input-warning w-full max-w-xs" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CheckOut" class="control-label"></label>
-                <input asp-for="CheckOut" class="form-control" />
-                <span asp-validation-for="CheckOut" class="text-danger"></span>
+                <label asp-for="CheckIn" class="label">Time Adopt</label>
+                <input asp-for="CheckIn" type="Date" placeholder="When we adopt it?"
+                    class="input input-bordered input-warning w-full max-w-xs" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <label asp-for="CheckOut" class="label">Time PickUp</label>
+                <input asp-for="CheckOut" type="Date" placeholder="When it get a family?"
+                    class="input input-bordered input-warning w-full max-w-xs" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="Photo" class="label">Image</label>
+                <input asp-for="Photo" type="text"
+                    class="file-input file-input-bordered file-input-warning w-full max-w-xs" />
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group mx-auto my-auto">
+                <input type="submit" value="Update" class="btn btn-warning" />
+                <a class="btn btn-primary" asp-action="Index">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

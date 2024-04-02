@@ -1,3 +1,5 @@
-/bin
-/obj
-/obj/Debug
+/NanaProject/bin
+/NanaProject/bin/Debug
+/NanaProject/bin/Debug/net8.0
+/NanaProject/obj
+/NanaProject/obj/Debug

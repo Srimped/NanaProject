@@ -2,6 +2,7 @@ using System.Diagnostics;
 using NanaProject.Interfaces;
 using NanaProject.Models;
 using Microsoft.EntityFrameworkCore;
+using NanaProject.ViewModels;
 
 namespace NanaProject.Services;
 
@@ -43,5 +44,27 @@ public class FoodService : IFoodService
     public Food GetById (int id)
     {
         return _context.Foods.Where( f => f.FoodId == id).SingleOrDefault();
+    }
+
+    public FoodCreateEditViewModel GetByIdCate (int id)
+    {
+        // return _context.Foods.Where( f => f.FoodId == id).SingleOrDefault();
+        var food = _context.Foods.FirstOrDefault(f => f.FoodId == id);
+
+        if (food is null)
+        {
+            return new FoodCreateEditViewModel();
+        }
+
+        return new FoodCreateEditViewModel()
+        {
+            FoodId = food.FoodId,
+            FoodPhoto = food.FoodPhoto,
+            FoodName = food.FoodName,
+            CateId = food.CateId,
+            Quantity = food.Quantity,
+            Status = food.Status,
+            FoodDescription = food.FoodDescription
+        };
     }
 }

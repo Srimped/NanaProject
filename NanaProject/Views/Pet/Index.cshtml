@@ -4,40 +4,35 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
+<h1 class="text-5xl font-bold text-yellow-400 text-center mt-20">Adopt Pets</h1>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary mb-20 ml-28" asp-action="Create">New Pet</a>
 </p>
-@* @foreach (var item in Model) {
-@Html.DisplayFor(modelItem => item.Photo)
-@Html.DisplayFor(modelItem => item.Name)
-@Html.DisplayFor(modelItem => item.TypeId)
-@Html.DisplayFor(modelItem => item.Old)
-@Html.DisplayFor(modelItem => item.CheckIn)
-@Html.DisplayFor(modelItem => item.CheckOut)
-@Html.DisplayFor(modelItem => item.Description)
-<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-<a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-} *@
-
 
 <section class="grid grid-cols-4 place-items-center gap-20 mx-32">
     @foreach (var item in Model)
     {
         <div class="card w-96 bg-base-100 shadow-xl border-none">
-            <figure><img src="@Html.DisplayFor(modelItem => item.Photo)" alt="Shoes" /></figure>
+            <figure><img class="aspect-[16/10] object-cover" src="@Html.DisplayFor(modelItem => item.Photo)" alt="Pets" />
+            </figure>
             <div class="card-body">
-                <h2 class="card-title text-white">@Html.DisplayFor(modelItem => item.Name)</h2>
-                <p class="text-white"><span class="font-bold">Specie: </span> @Html.DisplayFor(modelItem => item.TypeId)</p>
-                <p class="text-white"><span class="font-bold">Age: </span> @Html.DisplayFor(modelItem => item.Old) years old
-                </p>
-                <p class="text-white">@Html.DisplayFor(modelItem => item.Description)</p>
+                <div class="mx-6">
+                    <h2 class="card-title text-black text-3xl font-bold mb-3">@Html.DisplayFor(modelItem => item.Name)</h2>
+                    <div class="">
+                        <p class="text-black mb-2"><span class="font-bold">Age: </span> @Html.DisplayFor(modelItem => item.Old)
+                            years
+                            old
+                        </p>
+                        <p class="text-black">@Html.DisplayFor(modelItem => item.Description)</p>
+                    </div>
+                </div>
                 <div class="card-actions justify-evenly mt-4">
-                    <a class="btn btn-accent" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Update</a>
-                    <a class="btn btn-error" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-accent shadow" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-warning shadow" asp-action="Edit" asp-route-id="@item.Id">Update</a>
+                    <form asp-action="Delete" asp-route-id="@item.Id"
+                        onsubmit="return confirm('Are you sure to remove pet @Html.DisplayFor(modelItem => item.Name) !!!???')">
+                        <button class="btn btn-error shadow">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>
