@@ -4,51 +4,23 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Food</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FoodPhoto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FoodPhoto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FoodName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FoodName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CateId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CateId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FoodDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FoodDescription)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.FoodId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="hero min-h-screen bg-base-200">
+    <div class="hero-content flex-col lg:flex-row gap-20">
+        <img src="@Html.DisplayFor(model => model.FoodPhoto)" class="max-w-3xl aspect-[4/2] object-contain"/>
+        <div>
+            <h1 class="text-5xl font-bold py-6">Supply "@Html.DisplayFor(model => model.FoodName)"</h1>
+            <p class="text-xl py-2"><span class="font-bold">ID: 
+                </span>@Html.DisplayFor(model => model.FoodId)</p>
+            <p class="text-xl py-2"><span class="font-bold">Category:  
+                </span>@Html.DisplayFor(model => model.CateId)</p>
+            <p class="text-xl py-2"><span class="font-bold">Quantity: </span>@Html.DisplayFor(model
+                => model.Quantity) Box</p>
+            <p class="text-xl py-2"><span class="font-bold">Status: 
+                </span>@Html.DisplayFor(model => model.Status)</p>
+            <p class="text-xl py-2"><span class="font-bold">Description:
+                </span>@Html.DisplayFor(model => model.FoodDescription)</p>
+            <a asp-action="Edit" asp-route-id="@Model?.FoodId" class="btn btn-warning">Update</a>
+            <a asp-action="Index" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
 </div>

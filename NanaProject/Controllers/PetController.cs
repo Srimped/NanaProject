@@ -118,23 +118,6 @@ namespace NanaProject.Controllers
             return View(pet);
         }
 
-        // [HttpGet]
-        // public IActionResult Delete(int id)
-        // {
-        //     if (id == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     var pet = _petService.GetById(id);
-        //     if (pet == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     return View(pet);
-        // }
-
         // POST: Pet/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

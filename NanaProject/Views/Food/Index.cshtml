@@ -41,23 +41,28 @@
     @foreach (var item in Model)
     {
         <div class="card w-96 bg-base-100 shadow-xl border-none">
-            <figure><img class="aspect-[4/2] object-contain" src="@Html.DisplayFor(modelItem => item.FoodPhoto)" alt="Foods" /></figure>
+            <figure><img class="aspect-[4/2] object-contain" src="@Html.DisplayFor(modelItem => item.FoodPhoto)"
+                    alt="Foods" /></figure>
             <div class="card-body">
-                <h2 class="card-title text-black">@Html.DisplayFor(modelItem => item.FoodName)</h2>
-                <div class="grid grid-cols-2 gap-3 mx-4">
-                    <p class="text-black"><span class="font-bold">Category: </span> @Html.DisplayFor(modelItem =>
-                    item.CateId)
-                    </p>
-                    <p class="text-black"><span class="font-bold">Quantity: </span> @Html.DisplayFor(modelItem =>
-                    item.Quantity)
-                    </p>
-                    <p class="text-black"><span class="font-bold">Status: </span>@Html.DisplayFor(modelItem => item.Status)</p>
-                    <p class="text-black">@Html.DisplayFor(modelItem => item.FoodDescription)</p>
+                <div class="mx-6">
+                    <h2 class="card-title text-black text-3xl font-bold mb-3">@Html.DisplayFor(modelItem => item.FoodName)
+                    </h2>
+                    <div class="">
+                        <p class="text-black mb-2"><span class="font-bold">Quantity: </span> @Html.DisplayFor(modelItem =>
+                        item.Quantity)
+                        </p>
+                        <p class="text-black mb-2"><span class="font-bold">Status: </span>@Html.DisplayFor(modelItem =>
+                        item.Status)</p>
+                        <p class="text-black">@Html.DisplayFor(modelItem => item.FoodDescription)</p>
+                    </div>
                 </div>
                 <div class="card-actions justify-evenly mt-4">
                     <a class="btn btn-accent shadow" asp-action="Details" asp-route-id="@item.FoodId">Details</a>
                     <a class="btn btn-warning shadow" asp-action="Edit" asp-route-id="@item.FoodId">Update</a>
-                    <a class="btn btn-error shadow" asp-action="Delete" asp-route-id="@item.FoodId">Delete</a>
+                    <form asp-action="Delete" asp-route-id="@item.FoodId"
+                        onsubmit="return confirm('Are you sure to remove pet @Html.DisplayFor(modelItem => item.FoodName) !!!???')">
+                        <button class="btn btn-error shadow">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>

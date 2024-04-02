@@ -113,23 +113,6 @@ namespace NanaProject.Controllers
             return View(food);
         }
 
-        [HttpGet]
-        public IActionResult Delete(int id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var food = _foodService.GetById(id);
-            if (food == null)
-            {
-                return NotFound();
-            }
-
-            return View(food);
-        }
-
         // POST: Food/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
