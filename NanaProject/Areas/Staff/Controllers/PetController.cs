@@ -2,28 +2,34 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NanaProject.Interfaces;
 using NanaProject.Models;
+using NanaProject.ViewModels;
 
 namespace NanaProject.Controllers
 {
-    public class SpeciesController : Controller
+    [Authorize(Roles = "Staff")]
+    [Area("Staff")]
+    public class PetController : Controller
     {
+        private readonly IPetService _petService;
         private readonly ISpeciesService _speciesService;
 
-        public SpeciesController(ISpeciesService speciesService)
+        public PetController(IPetService petService, ISpeciesService speciesService)
         {
+            _petService = petService;
             _speciesService = speciesService;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var spec = _speciesService.GetSpecies();
-            return View(spec);
+            var pet = _petService.GetPets();
+            return View(pet);
         }
 
         [HttpGet]
@@ -34,35 +40,40 @@ namespace NanaProject.Controllers
                 return NotFound();
             }
 
-            var species = _speciesService.GetById(id);
-            if (species == null)
+            var pet = _petService.GetById(id);
+            if (pet == null)
             {
                 return NotFound();
             }
 
-            return View(species);
+            return View(pet);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var model = new PetCreateEditViewModel
+            {
+                Specieses = GetSpec()
+            };
+            return View(model);
         }
 
-        // POST: Species/Create
+        // POST: Pet/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("SpecId,SpecName,SpecDescription")] Species species)
+        public IActionResult Create([Bind("Id,Photo,Name,TypeId,Old,CheckIn,CheckOut,Description")] Pet pet)
         {
             if (ModelState.IsValid)
             {
-                _speciesService.CreateSpecies(species);
-                _speciesService.Save();
+
+                _petService.CreatePet(pet);
+                _petService.Save();
                 return RedirectToAction("Index");
             }
-            return View(species);
+            return View(pet);
         }
 
         [HttpGet]
@@ -72,23 +83,24 @@ namespace NanaProject.Controllers
             {
                 return NotFound();
             }
-
-            var species = _speciesService.GetById(id);
-            if (species == null)
+            // GetSpec();
+            var pet = _petService.GetByIdSpec(id);
+            pet.Specieses = GetSpec();
+            if (pet == null)
             {
                 return NotFound();
             }
-            return View(species);
+            return View(pet);
         }
 
-        // POST: Species/Edit/5
+        // POST: Pet/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("SpecId,SpecName,SpecDescription")] Species species)
+        public IActionResult Edit(int id, [Bind("Id,Photo,Name,TypeId,Old,CheckIn,CheckOut,Description")] Pet pet)
         {
-            if (id != species.SpecId)
+            if (id != pet.Id)
             {
                 return NotFound();
             }
@@ -97,8 +109,8 @@ namespace NanaProject.Controllers
             {
                 try
                 {
-                    _speciesService.UpdateSpecies(species);
-                    _speciesService.Save();
+                    _petService.UpdatePet(pet);
+                    _petService.Save();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -106,34 +118,35 @@ namespace NanaProject.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(species);
+            return View(pet);
         }
 
-        [HttpGet]
-        public IActionResult Delete(int id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var species = _speciesService.GetById(id);
-            if (species == null)
-            {
-                return NotFound();
-            }
-
-            return View(species);
-        }
-
-        // POST: Species/Delete/5
+        // POST: Pet/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            _speciesService.DeleteSpecies(id);
-            _speciesService.Save();
+            _petService.DeletePet(id);
+            _petService.Save();
             return RedirectToAction("Index");
+        }
+
+        private List<SelectListItem> GetSpec()
+        {
+            var specs = new List<SelectListItem>()
+        {
+            new SelectListItem(){
+                Value = "",
+                Text= "---Select Pet Species---"
+            }
+        };
+            specs.AddRange(_speciesService.GetSpecies().Select(s => new SelectListItem()
+            {
+                Value = s.SpecId.ToString(),
+                Text = s.SpecName
+            }).ToList());
+
+            return specs;
         }
     }
 }

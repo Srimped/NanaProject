@@ -13,64 +13,49 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 <body>
     <header>
         @* <div class="p-4 w-full bg-transparent absolute">
         *@
-        <div class="fixed navbar bg-transparent px-4 transition duration-500 z-50" id="navbar">
-            <div class="navbar-start">
-                <div class="flex gap-16">
-                    <a class="text-3xl text-white" id="logo" asp-area="" asp-controller="Home"
-                        asp-action="Index">NanaProject</a>
-                    <ul class="flex gap-10 text-xl [&>li>a]:text-white [&>li>a]:decoration-[3px]" id="navitem">
-                        <li>
-                            <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li>
-                            <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                asp-area="" asp-controller="Pet" asp-action="Index">Pets</a>
-                        </li>
-                        <li>
-                            <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                asp-area="" asp-controller="Food" asp-action="Index">Foods</a>
-                        </li>
-                        <li>
-                            <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                asp-area="" asp-controller="Home" asp-action="About">About us</a>
-                        </li>
-                        <li>
-                            <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="flex-none gap-3">
-                <div class="">
-                    <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
-                </div>
-                <div class="dropdown dropdown-end">
-                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                        <div class="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component"
-                                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                        </div>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="fixed navbar bg-transparent px-4 transition duration-500 z-50" id="navbar">
+                <div class="navbar-start">
+                    <div class="flex gap-16">
+                        <a class="text-3xl text-white" id="logo" asp-area="" asp-controller="Home"
+                            asp-action="Index">NanaProject</a>
+                        <ul class="flex gap-10 text-xl [&>li>a]:text-white [&>li>a]:decoration-[3px]" id="navitem">
+                            <li>
+                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                    asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li>
+                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                    asp-area="Staff" asp-controller="Pet" asp-action="Index">Pets</a>
+                            </li>
+                            <li>
+                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                    asp-area="Staff" asp-controller="Food" asp-action="Index">Foods</a>
+                            </li>
+                            <li>
+                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                    asp-area="" asp-controller="Home" asp-action="About">About us</a>
+                            </li>
+                            <li>
+                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                    asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                            </li>
+                        </ul>
                     </div>
-                    <ul tabindex="0"
-                        class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                        <li>
-                            <a class="justify-between text-white">
-                                Profile
-                                <span class="badge">New</span>
-                            </a>
-                        </li>
-                        <li><a class="text-white">Settings</a></li>
-                        <li><a class="text-white">Logout</a></li>
-                    </ul>
                 </div>
+                <partial name="_LoginPartial" />
             </div>
-        </div>
+        }
     </header>
     <main role="main" class="pb-3">
         @RenderBody()

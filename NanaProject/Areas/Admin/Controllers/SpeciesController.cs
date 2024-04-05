@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,20 +11,22 @@ using NanaProject.Models;
 
 namespace NanaProject.Controllers
 {
-    public class AccountController : Controller
+    [Authorize(Roles = "Admin")]
+    [Area("Admin")]
+    public class SpeciesController : Controller
     {
-        private readonly IAccountService _accountService;
+        private readonly ISpeciesService _speciesService;
 
-        public AccountController(IAccountService accountSerivce)
+        public SpeciesController(ISpeciesService speciesService)
         {
-            _accountService = accountSerivce;
+            _speciesService = speciesService;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var accs = _accountService.GetAccounts();
-            return View(accs);
+            var spec = _speciesService.GetSpecies();
+            return View(spec);
         }
 
         [HttpGet]
@@ -34,13 +37,13 @@ namespace NanaProject.Controllers
                 return NotFound();
             }
 
-            var account = _accountService.GetById(id);
-            if (account == null)
+            var species = _speciesService.GetById(id);
+            if (species == null)
             {
                 return NotFound();
             }
 
-            return View(account);
+            return View(species);
         }
 
         [HttpGet]
@@ -49,20 +52,20 @@ namespace NanaProject.Controllers
             return View();
         }
 
-        // POST: Account/Create
+        // POST: Species/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("AccId,AccPhoto,FullName,DOB,Email,Password,Phone,Address")] Account account)
+        public IActionResult Create([Bind("SpecId,SpecName,SpecDescription")] Species species)
         {
             if (ModelState.IsValid)
             {
-                _accountService.CreateAccount(account);
-                _accountService.Save();
+                _speciesService.CreateSpecies(species);
+                _speciesService.Save();
                 return RedirectToAction("Index");
             }
-            return View(account);
+            return View(species);
         }
 
         [HttpGet]
@@ -73,22 +76,22 @@ namespace NanaProject.Controllers
                 return NotFound();
             }
 
-            var account = _accountService.GetById(id);
-            if (account == null)
+            var species = _speciesService.GetById(id);
+            if (species == null)
             {
                 return NotFound();
             }
-            return View(account);
+            return View(species);
         }
 
-        // POST: Account/Edit/5
+        // POST: Species/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("AccId,AccPhoto,FullName,DOB,Email,Password,Phone,Address")] Account account)
+        public IActionResult Edit(int id, [Bind("SpecId,SpecName,SpecDescription")] Species species)
         {
-            if (id != account.AccId)
+            if (id != species.SpecId)
             {
                 return NotFound();
             }
@@ -97,8 +100,8 @@ namespace NanaProject.Controllers
             {
                 try
                 {
-                    _accountService.UpdateAccount(account);
-                    _accountService.Save();
+                    _speciesService.UpdateSpecies(species);
+                    _speciesService.Save();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -106,7 +109,7 @@ namespace NanaProject.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(account);
+            return View(species);
         }
 
         [HttpGet]
@@ -117,27 +120,22 @@ namespace NanaProject.Controllers
                 return NotFound();
             }
 
-            var account = _accountService.GetById(id);
-            if (account == null)
+            var species = _speciesService.GetById(id);
+            if (species == null)
             {
                 return NotFound();
             }
 
-            return View(account);
+            return View(species);
         }
 
-        // POST: Account/Delete/5
+        // POST: Species/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            var account = _accountService.GetById(id);
-            if (account != null)
-            {
-                _accountService.DeleteAccount(id);
-            }
-
-            _accountService.Save();
+            _speciesService.DeleteSpecies(id);
+            _speciesService.Save();
             return RedirectToAction("Index");
         }
     }

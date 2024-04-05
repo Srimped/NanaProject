@@ -17,9 +17,11 @@ builder.Services.AddDbContext<NanaDbContext>(options =>
     }
 );
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<NanaDbContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
+    .AddRoleManager<RoleManager<IdentityRole>>()
+    .AddEntityFrameworkStores<NanaDbContext>();
 
-builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IFoodService, FoodService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IPetService, PetService>();
@@ -51,5 +53,7 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+await app.SeedData();
 
 app.Run();
