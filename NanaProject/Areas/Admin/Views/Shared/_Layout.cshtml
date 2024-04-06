@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NanaProject</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/NanaProject.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.9.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<body>
+    <header>
+        @* <div class="p-4 w-full bg-transparent absolute">
+        *@
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="fixed navbar bg-transparent px-4 transition duration-500 z-50" id="navbar">
+                <div class="navbar-start">
+                    <div class="flex gap-16">
+                        <a class="text-3xl text-white" id="logo" asp-area="" asp-controller="Home"
+                            asp-action="Index">NanaProject</a>
+                        <ul class="flex gap-10 text-xl [&>li>a]:text-white [&>li>a]:decoration-[3px]" id="navitem">
+                            <li>
+                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                    asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li>
+                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                    asp-area="Admin" asp-controller="Account" asp-action="Index">Accounts</a>
+                            </li>
+                            <li>
+                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                    asp-area="Admin" asp-controller="Species" asp-action="Index">Species</a>
+                            </li>
+                            <li>
+                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                    asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
+                            </li>
+                            <li>
+                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                    asp-area="" asp-controller="Home" asp-action="About">About us</a>
+                            </li>
+                            <li>
+                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                    asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <partial name="_LoginPartial" />
+            </div>
+        }
+    </header>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - NanaProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script>
+        const navbar = document.getElementById("navbar")
+        const logo = document.getElementById("logo")
+        const item = document.getElementById("navitem")
+        document.addEventListener("scroll", (event) => {
+            if (window.location.pathname == "/") {
+                if (window.scrollY > 0) {
+                    logo.classList.remove("text-white")
+                    item.classList.remove("[&>li>a]:text-white")
+                    navbar.classList.add("bg-white", "shadow")
+                    navbar.classList.remove("bg-transparent")
+                    logo.classList.add("text-black")
+                    item.classList.add("[&>li>a]:text-black")
+                }
+                else {
+                    logo.classList.add("text-white")
+                    item.classList.add("[&>li>a]:text-white")
+                    navbar.classList.add("bg-transparent")
+                    navbar.classList.remove("bg-white", "shadow")
+                    logo.classList.remove("text-black")
+                    item.classList.remove("[&>li>a]:text-black")
+                }
+            }
+        })
+        window.addEventListener("load", () => {
+            if (window.location.pathname != "/") {
+                logo.classList.remove("text-white")
+                item.classList.remove("[&>li>a]:text-white")
+                navbar.classList.add("bg-white", "shadow")
+                navbar.classList.remove("bg-transparent", "fixed")
+                logo.classList.add("text-black")
+                item.classList.add("[&>li>a]:text-black")
+            }
+        })
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

@@ -1,3 +1,101 @@
+/* _content/NanaProject/Areas/Admin/Views/Shared/_Layout.cshtml.rz.scp.css */
+/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand[b-jibe7vmhx2] {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a[b-jibe7vmhx2] {
+  color: #0077cc;
+}
+
+.btn-primary[b-jibe7vmhx2] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active[b-jibe7vmhx2], .nav-pills .show > .nav-link[b-jibe7vmhx2] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top[b-jibe7vmhx2] {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom[b-jibe7vmhx2] {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow[b-jibe7vmhx2] {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy[b-jibe7vmhx2] {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer[b-jibe7vmhx2] {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}
+/* _content/NanaProject/Areas/Staff/Views/Shared/_Layout.cshtml.rz.scp.css */
+/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand[b-ba6efytoti] {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a[b-ba6efytoti] {
+  color: #0077cc;
+}
+
+.btn-primary[b-ba6efytoti] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active[b-ba6efytoti], .nav-pills .show > .nav-link[b-ba6efytoti] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top[b-ba6efytoti] {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom[b-ba6efytoti] {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow[b-ba6efytoti] {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy[b-ba6efytoti] {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer[b-ba6efytoti] {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}
 /* _content/NanaProject/Views/Shared/_Layout.cshtml.rz.scp.css */
 /* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
