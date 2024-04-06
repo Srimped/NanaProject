@@ -8636,7 +8636,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\srimped\\.nuget\\packages\\": {}
+    "C:\\Users\\Srimped\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -8644,16 +8644,18 @@
       "projectUniqueName": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\NanaProject.csproj",
       "projectName": "NanaProject",
       "projectPath": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\NanaProject.csproj",
-      "packagesPath": "C:\\Users\\srimped\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Srimped\\.nuget\\packages\\",
       "outputPath": "D:\\study projecct\\ASP .Net\\NashTech\\NanaProject\\NanaProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\srimped\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Srimped\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8733,7 +8735,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -5,14 +5,13 @@ using NanaProject.Models;
 
 namespace NanaProject.Controllers;
 
-[Authorize]
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<HomeController> _Logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> Logger)
     {
-        _logger = logger;
+        _Logger = Logger;
     }
 
     public IActionResult Index()

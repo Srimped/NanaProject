@@ -19,8 +19,8 @@
                 </span>@Html.DisplayFor(model => model.Status)</p>
             <p class="text-xl py-2"><span class="font-bold">Description:
                 </span>@Html.DisplayFor(model => model.FoodDescription)</p>
-            <a asp-action="Edit" asp-route-id="@Model?.FoodId" class="btn btn-warning">Update</a>
-            <a asp-action="Index" class="btn btn-primary">Back to List</a>
+            <a asp-area="Staff" asp-action="Edit" asp-route-id="@Model?.FoodId" class="btn btn-warning">Update</a>
+            <a asp-area="Staff" asp-action="Index" class="btn btn-primary">Back to List</a>
         </div>
     </div>
 </div>

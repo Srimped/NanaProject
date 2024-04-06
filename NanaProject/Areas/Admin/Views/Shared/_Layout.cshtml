@@ -36,7 +36,7 @@
                             </li>
                             <li>
                                 <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                    asp-area="Admin" asp-controller="Account" asp-action="Index">Accounts</a>
+                                    asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
                             </li>
                             <li>
                                 <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
@@ -44,7 +44,7 @@
                             </li>
                             <li>
                                 <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                    asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
+                                    asp-area="Admin" asp-controller="Account" asp-action="Index">Account</a>
                             </li>
                             <li>
                                 <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
@@ -75,7 +75,7 @@
         const logo = document.getElementById("logo")
         const item = document.getElementById("navitem")
         document.addEventListener("scroll", (event) => {
-            if (window.location.pathname == "/") {
+            if (window.location.pathname == "/" || window.location.pathname == "/Admin/" || window.location.pathname == "/Staff/") {
                 if (window.scrollY > 0) {
                     logo.classList.remove("text-white")
                     item.classList.remove("[&>li>a]:text-white")

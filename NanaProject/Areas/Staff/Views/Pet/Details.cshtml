@@ -21,8 +21,8 @@
                 </span>@Html.DisplayFor(model => model.CheckOut)</p>
             <p class="text-xl py-2"><span class="font-bold">@Html.DisplayNameFor(model => model.Description):
                 </span>@Html.DisplayFor(model => model.Description)</p>
-            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Update</a>
-            <a asp-action="Index" class="btn btn-primary">Back to List</a>
+            <a asp-area="Staff" asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Update</a>
+            <a asp-area="Staff" asp-action="Index" class="btn btn-primary">Back to List</a>
         </div>
     </div>
 </div>

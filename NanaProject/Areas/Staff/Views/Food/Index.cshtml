@@ -6,7 +6,7 @@
 
 <h1 class="text-5xl font-bold text-yellow-400 text-center mt-20">Pet Supplies</h1>
 <p>
-    <a class="btn btn-primary mb-20 ml-28" asp-action="Create">Add Food</a>
+    <a class="btn btn-primary mb-20 ml-28" asp-area="Staff" asp-action="Create">Add Food</a>
 </p>
 
 @* @foreach (var item in Model) {
@@ -57,9 +57,9 @@
                     </div>
                 </div>
                 <div class="card-actions justify-evenly mt-4">
-                    <a class="btn btn-accent shadow" asp-action="Details" asp-route-id="@item.FoodId">Details</a>
-                    <a class="btn btn-warning shadow" asp-action="Edit" asp-route-id="@item.FoodId">Update</a>
-                    <form asp-action="Delete" asp-route-id="@item.FoodId"
+                    <a class="btn btn-accent shadow" asp-area="Staff" asp-action="Details" asp-route-id="@item.FoodId">Details</a>
+                    <a class="btn btn-warning shadow" asp-area="Staff" asp-action="Edit" asp-route-id="@item.FoodId">Update</a>
+                    <form asp-action="Delete" asp-route-id="@item.FoodId" asp-area="Staff"
                         onsubmit="return confirm('Are you sure to remove pet @Html.DisplayFor(modelItem => item.FoodName) !!!???')">
                         <button class="btn btn-error shadow">Delete</button>
                     </form>

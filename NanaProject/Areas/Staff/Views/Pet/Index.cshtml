@@ -6,7 +6,7 @@
 
 <h1 class="text-5xl font-bold text-yellow-400 text-center mt-20">Adopt Pets</h1>
 <p>
-    <a class="btn btn-primary mb-20 ml-28" asp-action="Create">New Pet</a>
+    <a class="btn btn-primary mb-20 ml-28" asp-area="Staff" asp-action="Create">New Pet</a>
 </p>
 
 <section class="grid grid-cols-4 place-items-center gap-20 mx-32">
@@ -27,9 +27,9 @@
                     </div>
                 </div>
                 <div class="card-actions justify-evenly mt-4">
-                    <a class="btn btn-accent shadow" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    <a class="btn btn-warning shadow" asp-action="Edit" asp-route-id="@item.Id">Update</a>
-                    <form asp-action="Delete" asp-route-id="@item.Id"
+                    <a class="btn btn-accent shadow" asp-area="Staff" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-warning shadow" asp-area="Staff" asp-action="Edit" asp-route-id="@item.Id">Update</a>
+                    <form asp-area="Staff" asp-action="Delete" asp-route-id="@item.Id"
                         onsubmit="return confirm('Are you sure to remove pet @Html.DisplayFor(modelItem => item.Name) !!!???')">
                         <button class="btn btn-error shadow">Delete</button>
                     </form>
