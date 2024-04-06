@@ -4,38 +4,55 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
+<h1 class="text-5xl font-bold text-yellow-400 text-center mt-20">Species List</h1>
+<p class="container">
+    <a class="btn btn-primary mb-20 ml-28" asp-area="Admin" asp-action="Create">Add Species</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.SpecName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SpecDescription)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SpecName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SpecDescription)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.SpecId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SpecId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SpecId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container overflow-x-auto">
+    <table class="table table-zebra">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Species Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpecId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpecName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpecDescription)
+                    </td>
+                    <td>
+                        <div class="flex gap-3">
+                            <a class="btn btn-warning shadow" asp-area="Admin" asp-action="Edit"
+                                asp-route-id="@item.SpecId">Update</a>
+                            <form asp-action="Delete" asp-route-id="@item.SpecId" asp-area="Admin"
+                                onsubmit="return confirm('Are you sure to delete category @Html.DisplayFor(modelItem => item.SpecName) !!!???')">
+                                <button class="btn btn-error shadow">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
