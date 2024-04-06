@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NanaProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a3614de6f7b72e2546dec1f21b06341aaaa57347")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94bdb465addaf7e488f821984ca1785c623fda1b")]
 [assembly: System.Reflection.AssemblyProductAttribute("NanaProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NanaProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
