@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 using NanaProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using NanaProject.ViewModels;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Azure.Identity;
 
 namespace NanaProject.Controllers
 {
@@ -36,18 +33,18 @@ namespace NanaProject.Controllers
             foreach (var user in users)
             {
                 var roles = await _userManager.GetRolesAsync(user);
-                var accountViewModel = new AccountCreateEditViewModel
+                var model = new AccountCreateEditViewModel
                 {
                     Id = user.Id,
                     UserName = user.UserName,
-                    RoleNames = roles
+                    RoleNames = roles,
+                    PhoneNumber = user.PhoneNumber
                 };
-                userList.Add(accountViewModel);
+                userList.Add(model);
             }
             return View(userList);
         }
 
-        // GET: /Account/Edit/{id}
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -67,13 +64,13 @@ namespace NanaProject.Controllers
             {
                 Id = user.Id,
                 UserName = user.UserName,
-                RoleNames = roles
+                RoleNames = roles,
+                PhoneNumber = user.PhoneNumber
             };
 
             return View(model);
         }
 
-        // POST: /Account/Edit/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, AccountCreateEditViewModel model)
@@ -92,6 +89,7 @@ namespace NanaProject.Controllers
                 }
 
                 user.UserName = model.UserName;
+                user.PhoneNumber = model.PhoneNumber;
 
                 var result = await _userManager.UpdateAsync(user);
 
@@ -109,7 +107,6 @@ namespace NanaProject.Controllers
             return View(model);
         }
 
-        // POST: /Account/Delete/{id}
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
