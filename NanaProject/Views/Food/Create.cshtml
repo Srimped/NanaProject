@@ -1,16 +1,15 @@
 @model NanaProject.ViewModels.FoodCreateEditViewModel
 
 @{
-    ViewData["Title"] = "Modify Supply";
+    ViewData["Title"] = "Add Supply";
 }
 
 
 <div class="container form-control w-[700px] my-20 p-12 rounded-lg shadow border-none">
-    <h1 class="text-center text-3xl font-semibold text-yellow-400 mb-4">Modify Exist Supply</h1>
+    <h1 class="text-center text-3xl font-semibold text-yellow-400 mb-4">Add new supply for pet</h1>
     <div class="">
-        <form asp-action="Edit" asp-area="Staff" class="grid grid-cols-2 gap-3">
+        <form asp-action="Create" class="grid grid-cols-2 gap-3">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="FoodId" />
             <div class="form-group">
                 <label asp-for="FoodName" class="label">Name</label>
                 <input asp-for="FoodName" type="text" placeholder="Supply Name"
@@ -24,13 +23,13 @@
                 <span asp-validation-for="CateId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quantity" class="label">Quantity</label>
+                <label asp-for="Quantity" class="label"></label>
                 <input asp-for="Quantity" type="number" placeholder="Supply Quantity"
                     class="input input-bordered input-warning w-full max-w-xs" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Status" class="label">Status</label>
+                <label asp-for="Status" class="label"></label>
                 <select asp-for="Status" class="select select-warning w-full max-w-xs">
                     <option value="Default">---Set Supply Status---</option>
                     <option value="1">Stocking</option>
@@ -39,20 +38,20 @@
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FoodDescription" class="label"></label>
-                <input asp-for="FoodDescription" type="text" placeholder="Food Description"
+                <label asp-for="FoodDescription" class="label">Description</label>
+                <input asp-for="FoodDescription" type="text" placeholder="Supply Description"
                     class="input input-bordered input-warning w-full max-w-xs" />
                 <span asp-validation-for="FoodDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FoodPhoto" class="label">Image</label>
-                <input asp-for="FoodPhoto" type="Text" placeholder="Supply Image"
+                <input asp-for="FoodPhoto" type="text" placeholder="Supply Image"
                     class="input input-bordered input-warning w-full max-w-xs" />
                 <span asp-validation-for="FoodPhoto" class="text-danger"></span>
             </div>
             <div class="form-group my-2">
-                <input type="submit" value="Update" class="btn btn-warning" />
-                <a class="btn btn-primary" asp-area="Staff" asp-action="Index">Back to List</a>
+                <input type="submit" value="Create" class="btn btn-warning" />
+                <a class="btn btn-primary" asp-action="Index">Back to List</a>
             </div>
         </form>
     </div>

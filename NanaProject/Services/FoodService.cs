@@ -41,6 +41,11 @@ public class FoodService : IFoodService
         _context.Foods.Remove(food);
     }
 
+    public List<Food> Search(string key)
+    {
+        return _context.Foods.Where(f => f.FoodName.Contains(key)).ToList();
+    }
+
     public Food GetById (int id)
     {
         return _context.Foods.Where( f => f.FoodId == id).SingleOrDefault();

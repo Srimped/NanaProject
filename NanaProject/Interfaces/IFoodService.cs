@@ -12,5 +12,6 @@ public interface IFoodService
     void UpdateFood(Food food);
     void DeleteFood(int id);
     Food GetById (int id);
+    List<Food> Search (string key);
     public FoodCreateEditViewModel GetByIdCate (int id); 
 }

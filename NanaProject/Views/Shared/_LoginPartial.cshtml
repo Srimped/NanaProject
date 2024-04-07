@@ -31,36 +31,25 @@
                                 asp-area="Admin" asp-controller="Account" asp-action="Index">Account</a>
                         </li>
                     }
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("Staff"))
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Member") || User.IsInRole("Staff"))
                     {
                         <li>
                             <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                asp-area="Staff" asp-controller="Pet" asp-action="Index">Pets</a>
+                                asp-area="" asp-controller="Pet" asp-action="Index">Adopt</a>
                         </li>
                         <li>
                             <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                asp-area="Staff" asp-controller="Food" asp-action="Index">Foods</a>
+                                asp-area="" asp-controller="Food" asp-action="Index">Supply</a>
+                        </li>
+                        <li>
+                            <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                asp-area="" asp-controller="Home" asp-action="About">About us</a>
+                        </li>
+                        <li>
+                            <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
                     }
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
-                    {
-                        <li>
-                            <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                asp-area="Staff" asp-controller="Pet" asp-action="Index">Adopt</a>
-                        </li>
-                        <li>
-                            <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                asp-area="Staff" asp-controller="Food" asp-action="Index">Supply</a>
-                        </li>
-                    }
-                    <li>
-                        <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                            asp-area="" asp-controller="Home" asp-action="About">About us</a>
-                    </li>
-                    <li>
-                        <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                            asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -124,8 +113,8 @@ else
         <div>
             <ul class="flex gap-10 text-xl [&>li>a]:text-white [&>li>a]:decoration-[3px]" id="navlogin">
                 <li>
-                    <a class="btn btn-warning rounded-full px-10"
-                        asp-area="Identity" asp-controller="Account" asp-action="Login">Login</a>
+                    <a class="btn btn-warning rounded-full px-10" asp-area="Identity" asp-controller="Account"
+                        asp-action="Login">Login</a>
                 </li>
         </div>
     </div>

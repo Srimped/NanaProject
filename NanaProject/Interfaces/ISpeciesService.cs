@@ -10,5 +10,6 @@ public interface ISpeciesService
     void CreateSpecies(Species species);
     void UpdateSpecies(Species species);
     void DeleteSpecies(int id);
+    List<Species> Search(string key);
     Species GetById(int id);    
 }

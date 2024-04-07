@@ -1,0 +1,56 @@
+@model IEnumerable<NanaProject.Models.Pet>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-5xl font-bold text-yellow-400 text-center mt-20">Adopt Pets</h1>
+<div class="flex justify-evenly my-20">
+    <p>
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Staff"))
+        {
+            <a class="btn btn-primary" asp-action="Create">New Pet</a>
+        }
+    </p>
+    <form asp-action="Search" class="flex gap-2">
+        <div class="form-group">
+            <input type="text" name="key" placeholder="Search Here...."
+                class="input input-bordered input-warning w-full max-w-xs" />
+        </div>
+        <button type="submit" class="btn btn-warning">Search</button>
+    </form>
+</div>
+
+<section class="grid grid-cols-4 place-items-center gap-20 mx-32">
+    @foreach (var item in Model)
+    {
+        <div class="card w-96 bg-base-100 shadow-xl border-none">
+            <figure><img class="aspect-[16/10] object-cover" src="@Html.DisplayFor(modelItem => item.Photo)" alt="Pets" />
+            </figure>
+            <div class="card-body">
+                <div class="mx-6">
+                    <h2 class="card-title text-black text-3xl font-bold mb-3">@Html.DisplayFor(modelItem => item.Name)</h2>
+                    <div class="">
+                        <p class="text-black mb-2"><span class="font-bold">Age: </span> @Html.DisplayFor(modelItem =>
+                        item.Old)
+                            years
+                            old
+                        </p>
+                        <p class="text-black">@Html.DisplayFor(modelItem => item.Description)</p>
+                    </div>
+                </div>
+                <div class="card-actions justify-evenly mt-4">
+                    <a class="btn btn-accent shadow" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Staff"))
+                    {
+                        <a class="btn btn-warning shadow" asp-action="Edit" asp-route-id="@item.Id">Update</a>
+                        <form asp-action="Delete" asp-route-id="@item.Id"
+                            onsubmit="return confirm('Are you sure to remove pet @Html.DisplayFor(modelItem => item.Name) !!!???')">
+                            <button class="btn btn-error shadow">Delete</button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</section>

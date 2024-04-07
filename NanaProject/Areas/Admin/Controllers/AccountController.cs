@@ -45,6 +45,27 @@ namespace NanaProject.Controllers
             return View(userList);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Search(string key)
+        {
+            var users = await _userManager.Users.Where(u => u.UserName.Contains(key)).ToListAsync();
+            var userList = new List<AccountCreateEditViewModel>();
+
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                var model = new AccountCreateEditViewModel
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    RoleNames = roles,
+                    PhoneNumber = user.PhoneNumber
+                };
+                userList.Add(model);
+            }
+            return View(userList);
+        }
+
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)

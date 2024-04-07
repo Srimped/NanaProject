@@ -29,6 +29,13 @@ namespace NanaProject.Controllers
             return View(cate);
         }
 
+        [HttpPost]
+        public IActionResult Search(string key)
+        {
+            var cate = _categoryService.Search(key);
+            return View(cate);
+        }
+
         [HttpGet]
         public IActionResult Details(int id)
         {

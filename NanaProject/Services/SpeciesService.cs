@@ -40,6 +40,11 @@ public class SpeciesService : ISpeciesService
         _context.Specieses.Remove(spec);
     }
 
+    public List<Species> Search (string key)
+    {
+        return _context.Specieses.Where(s => s.SpecName.Contains(key)).ToList();
+    }
+
     public Species GetById (int id)
     {
         return _context.Specieses.Where( s => s.SpecId == id).SingleOrDefault();

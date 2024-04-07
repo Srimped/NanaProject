@@ -1,41 +1,26 @@
-@model IEnumerable<NanaProject.Models.Food>
+@model List<NanaProject.Models.Food>
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1 class="text-5xl font-bold text-yellow-400 text-center mt-20">Pet Supplies</h1>
-<p>
-    <a class="btn btn-primary mb-20 ml-28" asp-area="Staff" asp-action="Create">Add Food</a>
-</p>
+<div class="flex justify-evenly my-20">
+    <p>
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Staff"))
+        {
+            <a class="btn btn-primary" asp-action="Create">Add Food</a>
+        }
+    </p>
+    <form asp-action="Search" class="flex gap-2">
+        <div class="form-group">
+            <input type="text" name="key" placeholder="Search Here...."
+                class="input input-bordered input-warning w-full max-w-xs" />
+        </div>
+        <button type="submit" class="btn btn-warning">Search</button>
+    </form>
 
-@* @foreach (var item in Model) {
-<tr>
-<td>
-@Html.DisplayFor(modelItem => item.FoodPhoto)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.FoodName)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.CateId)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.Quantity)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.Status)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.FoodDescription)
-</td>
-<td>
-<a asp-action="Edit" asp-route-id="@item.FoodId">Edit</a> |
-<a asp-action="Details" asp-route-id="@item.FoodId">Details</a> |
-<a asp-action="Delete" asp-route-id="@item.FoodId">Delete</a>
-</td>
-</tr>
-} *@
+</div>
 
 <section class="grid grid-cols-4 place-items-center gap-20 mx-32">
     @foreach (var item in Model)
@@ -57,12 +42,15 @@
                     </div>
                 </div>
                 <div class="card-actions justify-evenly mt-4">
-                    <a class="btn btn-accent shadow" asp-area="Staff" asp-action="Details" asp-route-id="@item.FoodId">Details</a>
-                    <a class="btn btn-warning shadow" asp-area="Staff" asp-action="Edit" asp-route-id="@item.FoodId">Update</a>
-                    <form asp-action="Delete" asp-route-id="@item.FoodId" asp-area="Staff"
-                        onsubmit="return confirm('Are you sure to remove pet @Html.DisplayFor(modelItem => item.FoodName) !!!???')">
-                        <button class="btn btn-error shadow">Delete</button>
-                    </form>
+                    <a class="btn btn-accent shadow" asp-action="Details" asp-route-id="@item.FoodId">Details</a>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Staff"))
+                    {
+                        <a class="btn btn-warning shadow" asp-action="Edit" asp-route-id="@item.FoodId">Update</a>
+                        <form asp-action="Delete" asp-route-id="@item.FoodId"
+                            onsubmit="return confirm('Are you sure to remove pet @Html.DisplayFor(modelItem => item.FoodName) !!!???')">
+                            <button class="btn btn-error shadow">Delete</button>
+                        </form>
+                    }
                 </div>
             </div>
         </div>

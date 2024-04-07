@@ -41,6 +41,11 @@ public class PetService : IPetService
         _context.Pets.Remove(pet);
     }
 
+    public List<Pet> Search(string key)
+    {
+        return _context.Pets.Where(p => p.Name.Contains(key)).ToList();
+    }
+
     public Pet GetById (int id)
     {
         return _context.Pets.Where( p => p.Id == id).SingleOrDefault();

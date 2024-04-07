@@ -29,6 +29,13 @@ namespace NanaProject.Controllers
             return View(spec);
         }
 
+        [HttpPost]
+        public IActionResult Search(string key)
+        {
+            var spec = _speciesService.Search(key);
+            return View(spec);
+        }
+
         [HttpGet]
         public IActionResult Details(int id)
         {

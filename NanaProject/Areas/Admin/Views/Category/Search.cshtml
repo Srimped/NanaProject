@@ -1,13 +1,13 @@
-@model IEnumerable<NanaProject.Models.Species>
+@model List<NanaProject.Models.Category>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1 class="text-5xl font-bold text-yellow-400 text-center mt-20">Species List</h1>
+<h1 class="text-5xl font-bold text-yellow-400 text-center mt-20">Categories List</h1>
 <div class="flex justify-evenly my-20">
     <p>
-        <a class="btn btn-primary" asp-area="Admin" asp-action="Create">Add Species</a>
+        <a class="btn btn-primary" asp-area="Admin" asp-action="Create">Add Category</a>
     </p>
     <form asp-area="Admin" asp-action="Search" class="flex gap-2">
         <div class="form-group">
@@ -27,7 +27,7 @@
                     ID
                 </th>
                 <th>
-                    Species Name
+                    Category Name
                 </th>
                 <th>
                     Description
@@ -43,20 +43,20 @@
                 <tr>
                     <td></td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.SpecId)
+                        @Html.DisplayFor(modelItem => item.CateId)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.SpecName)
+                        @Html.DisplayFor(modelItem => item.CateName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.SpecDescription)
+                        @Html.DisplayFor(modelItem => item.CateDescription)
                     </td>
                     <td>
                         <div class="flex gap-3">
                             <a class="btn btn-warning shadow" asp-area="Admin" asp-action="Edit"
-                                asp-route-id="@item.SpecId">Update</a>
-                            <form asp-action="Delete" asp-route-id="@item.SpecId" asp-area="Admin"
-                                onsubmit="return confirm('Are you sure to delete category @Html.DisplayFor(modelItem => item.SpecName) !!!???')">
+                                asp-route-id="@item.CateId">Update</a>
+                            <form asp-action="Delete" asp-route-id="@item.CateId" asp-area="Admin"
+                                onsubmit="return confirm('Are you sure to delete category @Html.DisplayFor(modelItem => item.CateName) !!!???')">
                                 <button class="btn btn-error shadow">Delete</button>
                             </form>
                         </div>

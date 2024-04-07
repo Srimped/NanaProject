@@ -5,9 +5,19 @@
 }
 
 <h1 class="text-5xl font-bold text-yellow-400 text-center mt-20">Categories List</h1>
-<p class="container">
-    <a class="btn btn-primary mb-20 ml-28" asp-area="Admin" asp-action="Create">Add Category</a>
-</p>
+<div class="flex justify-evenly my-20">
+    <p>
+        <a class="btn btn-primary" asp-area="Admin" asp-action="Create">Add Category</a>
+    </p>
+    <form asp-area="Admin" asp-action="Search" class="flex gap-2">
+        <div class="form-group">
+            <input type="text" name="key" placeholder="Search Here...."
+                class="input input-bordered input-warning w-full max-w-xs" />
+        </div>
+        <button type="submit" class="btn btn-warning">Search</button>
+    </form>
+
+</div>
 <div class="container overflow-x-auto">
     <table class="table table-zebra">
         <thead>

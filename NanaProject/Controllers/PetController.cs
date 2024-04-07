@@ -12,8 +12,6 @@ using NanaProject.ViewModels;
 
 namespace NanaProject.Controllers
 {
-    [Authorize(Roles = "Staff")]
-    [Area("Staff")]
     public class PetController : Controller
     {
         private readonly IPetService _petService;
@@ -29,6 +27,13 @@ namespace NanaProject.Controllers
         public IActionResult Index()
         {
             var pet = _petService.GetPets();
+            return View(pet);
+        }
+
+        [HttpPost]
+        public IActionResult Search(string key)
+        {
+            var pet = _petService.Search(key);
             return View(pet);
         }
 
@@ -49,6 +54,7 @@ namespace NanaProject.Controllers
             return View(pet);
         }
 
+        [Authorize(Roles = "Staff, Admin")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -62,6 +68,7 @@ namespace NanaProject.Controllers
         // POST: Pet/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Staff, Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("Id,Photo,Name,TypeId,Old,CheckIn,CheckOut,Description")] Pet pet)
@@ -76,6 +83,7 @@ namespace NanaProject.Controllers
             return View(pet);
         }
 
+        [Authorize(Roles = "Staff, Admin")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -96,6 +104,7 @@ namespace NanaProject.Controllers
         // POST: Pet/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Staff, Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, [Bind("Id,Photo,Name,TypeId,Old,CheckIn,CheckOut,Description")] Pet pet)
@@ -122,6 +131,7 @@ namespace NanaProject.Controllers
         }
 
         // POST: Pet/Delete/5
+        [Authorize(Roles = "Staff, Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)

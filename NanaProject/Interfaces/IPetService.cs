@@ -11,6 +11,7 @@ public interface IPetService
     void CreatePet(Pet pet);
     void UpdatePet(Pet pet);
     void DeletePet(int id);
-    public Pet GetById(int id);   
+    public Pet GetById(int id);
+    List<Pet> Search(string key);
     public PetCreateEditViewModel GetByIdSpec (int id); 
 }

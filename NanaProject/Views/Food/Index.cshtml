@@ -1,0 +1,58 @@
+@model IEnumerable<NanaProject.Models.Food>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-5xl font-bold text-yellow-400 text-center mt-20">Pet Supplies</h1>
+<div class="flex justify-evenly my-20">
+    <p>
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Staff"))
+        {
+            <a class="btn btn-primary" asp-action="Create">Add Food</a>
+        }
+    </p>
+    <form asp-action="Search" class="flex gap-2">
+        <div class="form-group">
+            <input type="text" name="key" placeholder="Search Here...."
+                class="input input-bordered input-warning w-full max-w-xs" />
+        </div>
+        <button type="submit" class="btn btn-warning">Search</button>
+    </form>
+
+</div>
+
+<section class="grid grid-cols-4 place-items-center gap-20 mx-32">
+    @foreach (var item in Model)
+    {
+        <div class="card w-96 bg-base-100 shadow-xl border-none">
+            <figure><img class="aspect-[4/2] object-contain" src="@Html.DisplayFor(modelItem => item.FoodPhoto)"
+                    alt="Foods" /></figure>
+            <div class="card-body">
+                <div class="mx-6">
+                    <h2 class="card-title text-black text-3xl font-bold mb-3">@Html.DisplayFor(modelItem => item.FoodName)
+                    </h2>
+                    <div class="">
+                        <p class="text-black mb-2"><span class="font-bold">Quantity: </span> @Html.DisplayFor(modelItem =>
+                        item.Quantity)
+                        </p>
+                        <p class="text-black mb-2"><span class="font-bold">Status: </span>@Html.DisplayFor(modelItem =>
+                        item.Status)</p>
+                        <p class="text-black">@Html.DisplayFor(modelItem => item.FoodDescription)</p>
+                    </div>
+                </div>
+                <div class="card-actions justify-evenly mt-4">
+                    <a class="btn btn-accent shadow" asp-action="Details" asp-route-id="@item.FoodId">Details</a>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Staff"))
+                    {
+                        <a class="btn btn-warning shadow" asp-action="Edit" asp-route-id="@item.FoodId">Update</a>
+                        <form asp-action="Delete" asp-route-id="@item.FoodId"
+                            onsubmit="return confirm('Are you sure to remove pet @Html.DisplayFor(modelItem => item.FoodName) !!!???')">
+                            <button class="btn btn-error shadow">Delete</button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</section>

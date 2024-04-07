@@ -12,8 +12,6 @@ using NanaProject.ViewModels;
 
 namespace NanaProject.Controllers
 {
-    [Authorize(Roles = "Staff")]
-    [Area("Staff")]
     public class FoodController : Controller
     {
         private readonly IFoodService _foodService;
@@ -29,6 +27,13 @@ namespace NanaProject.Controllers
         public IActionResult Index()
         {
             var food = _foodService.GetFoods();
+            return View(food);
+        }
+
+        [HttpPost]
+        public IActionResult Search(string key)
+        {
+            var food = _foodService.Search(key);
             return View(food);
         }
 
@@ -49,6 +54,7 @@ namespace NanaProject.Controllers
             return View(food);
         }
 
+        [Authorize(Roles = "Staff, Admin")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -63,6 +69,7 @@ namespace NanaProject.Controllers
         // POST: Food/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Staff, Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("FoodId,FoodPhoto,FoodName,CateId,Quantity,Status,FoodDescription")] Food food)
@@ -76,6 +83,7 @@ namespace NanaProject.Controllers
             return View(food);
         }
 
+        [Authorize(Roles = "Staff, Admin")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -95,6 +103,7 @@ namespace NanaProject.Controllers
         // POST: Food/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Staff, Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, [Bind("FoodId,FoodPhoto,FoodName,CateId,Quantity,Status,FoodDescription")] Food food)
@@ -121,6 +130,7 @@ namespace NanaProject.Controllers
         }
 
         // POST: Food/Delete/5
+        [Authorize(Roles = "Staff, Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)

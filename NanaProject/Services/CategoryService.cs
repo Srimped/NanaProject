@@ -40,6 +40,11 @@ public class CategoryService : ICategoryService
         _context.Categories.Remove(cate);
     }
 
+    public List<Category> Search(string key)
+    {
+        return _context.Categories.Where(c => c.CateName.Contains(key)).ToList();
+    }
+
     public Category GetById (int id)
     {
         return _context.Categories.Where( c => c.CateId == id).SingleOrDefault();
