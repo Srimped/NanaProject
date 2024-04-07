@@ -12,7 +12,7 @@ using NanaProject.Models;
 namespace NanaProject.Migrations
 {
     [DbContext(typeof(NanaDbContext))]
-    [Migration("20240405111634_InitialCreate")]
+    [Migration("20240407023854_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

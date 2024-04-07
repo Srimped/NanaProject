@@ -26,18 +26,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = d:\study projecct\ASP .Net\NashTech\NanaProject\NanaProject
 build_property._RazorSourceGeneratorDebug = 
 
-[d:/study projecct/ASP .Net/NashTech/NanaProject/NanaProject/Areas/Admin/Views/Account/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxDcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[d:/study projecct/ASP .Net/NashTech/NanaProject/NanaProject/Areas/Admin/Views/Account/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxEZWxldGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[d:/study projecct/ASP .Net/NashTech/NanaProject/NanaProject/Areas/Admin/Views/Account/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxEZXRhaWxzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [d:/study projecct/ASP .Net/NashTech/NanaProject/NanaProject/Areas/Admin/Views/Account/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

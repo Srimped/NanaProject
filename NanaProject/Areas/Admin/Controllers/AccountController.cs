@@ -1,12 +1,17 @@
+using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using NanaProject.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using NanaProject.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Azure.Identity;
 
 namespace NanaProject.Controllers
 {
@@ -14,60 +19,35 @@ namespace NanaProject.Controllers
     [Area("Admin")]
     public class AccountController : Controller
     {
-        private readonly NanaDbContext _context;
+        private readonly ILogger<AccountController> _logger;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public AccountController(NanaDbContext context)
+        public AccountController(ILogger<AccountController> logger, UserManager<IdentityUser> userManager)
         {
-            _context = context;
+            _logger = logger;
+            _userManager = userManager;
         }
 
-        // GET: Account
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Account.ToListAsync());
-        }
+            var users = await _userManager.Users.ToListAsync();
+            var userList = new List<AccountCreateEditViewModel>();
 
-        // GET: Account/Details/5
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null)
+            foreach (var user in users)
             {
-                return NotFound();
+                var roles = await _userManager.GetRolesAsync(user);
+                var accountViewModel = new AccountCreateEditViewModel
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    RoleNames = roles
+                };
+                userList.Add(accountViewModel);
             }
-
-            var account = await _context.Account
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (account == null)
-            {
-                return NotFound();
-            }
-
-            return View(account);
+            return View(userList);
         }
 
-        // GET: Account/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Account/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AccPhoto,FullName,DOB,Address,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] Account account)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(account);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(account);
-        }
-
-        // GET: Account/Edit/5
+        // GET: /Account/Edit/{id}
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -75,85 +55,89 @@ namespace NanaProject.Controllers
                 return NotFound();
             }
 
-            var account = await _context.Account.FindAsync(id);
-            if (account == null)
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
-            return View(account);
+
+            var roles = await _userManager.GetRolesAsync(user);
+
+            var model = new AccountCreateEditViewModel
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                RoleNames = roles
+            };
+
+            return View(model);
         }
 
-        // POST: Account/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: /Account/Edit/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("AccPhoto,FullName,DOB,Address,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] Account account)
+        public async Task<IActionResult> Edit(string id, AccountCreateEditViewModel model)
         {
-            if (id != account.Id)
+            if (id != model.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                try
+                var user = await _userManager.FindByIdAsync(id);
+                if (user == null)
                 {
-                    _context.Update(account);
-                    await _context.SaveChangesAsync();
+                    return NotFound();
                 }
-                catch (DbUpdateConcurrencyException)
+
+                user.UserName = model.UserName;
+
+                var result = await _userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
                 {
-                    if (!AccountExists(account.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return RedirectToAction("Index");
                 }
-                return RedirectToAction(nameof(Index));
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
             }
-            return View(account);
+
+            return View(model);
         }
 
-        // GET: Account/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var account = await _context.Account
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (account == null)
-            {
-                return NotFound();
-            }
-
-            return View(account);
-        }
-
-        // POST: Account/Delete/5
+        // POST: /Account/Delete/{id}
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var account = await _context.Account.FindAsync(id);
-            if (account != null)
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
             {
-                _context.Account.Remove(account);
+                return NotFound();
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(user);
         }
 
-        private bool AccountExists(string id)
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
         {
-            return _context.Account.Any(e => e.Id == id);
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
