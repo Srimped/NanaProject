@@ -30,6 +30,14 @@
                             <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
                                 asp-area="Admin" asp-controller="Account" asp-action="Index">Account</a>
                         </li>
+                        <li>
+                            <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                asp-area="" asp-controller="Pet" asp-action="Index">Adopt</a>
+                        </li>
+                        <li>
+                            <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
+                                asp-area="" asp-controller="Food" asp-action="Index">Supply</a>
+                        </li>
                     }
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Member") || User.IsInRole("Staff"))
                     {

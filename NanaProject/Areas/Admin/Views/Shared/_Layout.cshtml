@@ -19,48 +19,7 @@
 @inject UserManager<IdentityUser> UserManager
 
 <body>
-    <header>
-        @* <div class="p-4 w-full bg-transparent absolute">
-        *@
-        @if (SignInManager.IsSignedIn(User))
-        {
-            <div class="fixed navbar bg-transparent px-4 transition duration-500 z-50" id="navbar">
-                <div class="navbar-start">
-                    <div class="flex gap-16">
-                        <a class="text-3xl text-white" id="logo" asp-area="" asp-controller="Home"
-                            asp-action="Index">NanaProject</a>
-                        <ul class="flex gap-10 text-xl [&>li>a]:text-white [&>li>a]:decoration-[3px]" id="navitem">
-                            <li>
-                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                    asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li>
-                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                    asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                            </li>
-                            <li>
-                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                    asp-area="Admin" asp-controller="Species" asp-action="Index">Species</a>
-                            </li>
-                            <li>
-                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                    asp-area="Admin" asp-controller="Account" asp-action="Index">Account</a>
-                            </li>
-                            <li>
-                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                    asp-area="" asp-controller="Home" asp-action="About">About us</a>
-                            </li>
-                            <li>
-                                <a class="hover:underline hover:underline-offset-4 hover:decoration-yellow-400 transition"
-                                    asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <partial name="_LoginPartial" />
-            </div>
-        }
-    </header>
+    <partial name="_LoginPartial.cshtml"/>
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
@@ -70,41 +29,7 @@
             &copy; 2024 - NanaProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script>
-        const navbar = document.getElementById("navbar")
-        const logo = document.getElementById("logo")
-        const item = document.getElementById("navitem")
-        document.addEventListener("scroll", (event) => {
-            if (window.location.pathname == "/" || window.location.pathname == "/Admin/" || window.location.pathname == "/Staff/") {
-                if (window.scrollY > 0) {
-                    logo.classList.remove("text-white")
-                    item.classList.remove("[&>li>a]:text-white")
-                    navbar.classList.add("bg-white", "shadow")
-                    navbar.classList.remove("bg-transparent")
-                    logo.classList.add("text-black")
-                    item.classList.add("[&>li>a]:text-black")
-                }
-                else {
-                    logo.classList.add("text-white")
-                    item.classList.add("[&>li>a]:text-white")
-                    navbar.classList.add("bg-transparent")
-                    navbar.classList.remove("bg-white", "shadow")
-                    logo.classList.remove("text-black")
-                    item.classList.remove("[&>li>a]:text-black")
-                }
-            }
-        })
-        window.addEventListener("load", () => {
-            if (window.location.pathname != "/") {
-                logo.classList.remove("text-white")
-                item.classList.remove("[&>li>a]:text-white")
-                navbar.classList.add("bg-white", "shadow")
-                navbar.classList.remove("bg-transparent", "fixed")
-                logo.classList.add("text-black")
-                item.classList.add("[&>li>a]:text-black")
-            }
-        })
-    </script>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
